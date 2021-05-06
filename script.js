@@ -24,7 +24,7 @@ function init() {
                         this.array = data;
 
                         //verifica se si tratta del primo caricamento e riempie l'array dei generi
-                        if (flag) {
+                        if (!this.generi) {
                             for (let i = 0; i < this.array.length; i++) {
                                 const album = this.array[i];
 
@@ -42,7 +42,7 @@ function init() {
 
         //richiama la funzione per caricare l'API passando la flag "primo caricamento"
         mounted(){
-            this.getApi("firstLoad");
+            this.getApi();
         }
 
     });

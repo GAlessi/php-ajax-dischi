@@ -10,7 +10,9 @@ function init() {
         },
 
         methods:{
-            getApi: function () {
+
+            //richiama l'API
+            getApi: function (flag) {
 
                 axios.get('data.php', {
                         params: {
@@ -19,9 +21,18 @@ function init() {
                     })
                     .then(r => {
                         let data = r.data;
-                        console.log(data);
                         this.array = data;
 
+                        //verifica se si tratta del primo caricamento e riempie l'array dei generi
+                        if (flag) {
+                            for (let i = 0; i < this.array.length; i++) {
+                                const album = this.array[i];
+
+                                if (!this.generi.includes(album.genre)) {
+                                    this.generi.push(album.genre)
+                                }
+                            }
+                        }
                     })
                     .catch(e => {
                         console.log(e);
@@ -29,8 +40,9 @@ function init() {
             }
         },
 
+        //richiama la funzione per caricare l'API passando la flag "primo caricamento"
         mounted(){
-            this.getApi();
+            this.getApi("firstLoad");
         }
 
     });

@@ -15,6 +15,11 @@
     padding: 30px;
 }
 
+select{
+    position: absolute;
+    top: 50px;
+}
+
 .row{
     display: flex;
     align-items: center;

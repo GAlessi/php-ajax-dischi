@@ -1,5 +1,7 @@
 <?php
     header('Content-Type: application/json');
+
+
     $db = [
         [
             "poster" => "https://www.onstageweb.com/wp-content/uploads/2018/09/bon-jovi-new-jersey.jpg",
@@ -72,5 +74,31 @@
             "year" => "1987"
         ]
     ];
-    echo json_encode($db);
+
+    $genre= ucfirst($_GET['genre']);
+
+    function randomAds($arr, $genre){
+
+        $selectedGenreArray = [];
+
+        if ($genre=='Tutti') {
+
+            return $arr;
+        }else {
+
+            foreach ($arr as $value) {
+                if ($value['genre']==$genre) {
+                    $selectedGenreArray[] = $value;
+                };
+            };
+
+            $activeLng = count($selectedGenreArray) -1;
+            return $selectedGenreArray;
+        }
+    }
+
+    $selected= randomAds($db, $genre);
+
+    // var_dump($selected);
+    echo json_encode($selected);
 ?>

@@ -5,18 +5,32 @@ function init() {
 
         data:{
             array: [],
+            generi:[],
+            selectedGenre: "Tutti",
+        },
+
+        methods:{
+            getApi: function () {
+
+                axios.get('data.php', {
+                        params: {
+                            'genre': this.selectedGenre
+                        }
+                    })
+                    .then(r => {
+                        let data = r.data;
+                        console.log(data);
+                        this.array = data;
+
+                    })
+                    .catch(e => {
+                        console.log(e);
+                    })
+            }
         },
 
         mounted(){
-            axios.get('data.php')
-                .then(r => {
-                    let data = r.data;
-                    console.log(data);
-                    this.array = data;
-                })
-                .catch(e => {
-                    console.log(e);
-                })
+            this.getApi();
         }
 
     });

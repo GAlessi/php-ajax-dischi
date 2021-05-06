@@ -12,6 +12,14 @@
     </head>
     <body>
         <div id="app" class="container">
+            <select v-model="selectedGenre" @change="getApi()">
+                <option>Tutti</option>
+                <option>Rock</option>
+                <option>Pop</option>
+                <option>Jazz</option>
+                <option>Metal</option>
+
+            </select>
             <div class="row">
                 <div v-for="album in array" class="album">
                     <h2>{{album.title}}</h2>

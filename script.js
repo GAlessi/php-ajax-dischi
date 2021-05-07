@@ -23,14 +23,12 @@ function init() {
                         let data = r.data;
                         this.array = data;
 
-                        //verifica se si tratta del primo caricamento e riempie l'array dei generi
-                        if (!this.generi) {
-                            for (let i = 0; i < this.array.length; i++) {
-                                const album = this.array[i];
+                    //verifica se si tratta del primo caricamento e riempie l'array dei generi
+                        for (let i = 0; i < this.array.length; i++) {
+                            const album = this.array[i];
 
-                                if (!this.generi.includes(album.genre)) {
-                                    this.generi.push(album.genre)
-                                }
+                            if (!this.generi.includes(album.genre)) {
+                                this.generi.push(album.genre)
                             }
                         }
                     })
